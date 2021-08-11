@@ -3,3 +3,4 @@ CELL-1,"Live cells with fewer than 2 neighbors die, as from loneliness."
 CELL-2,Live cells with 2 or 3 neighbors live on
 CELL-3,"Dead cells with exactly three neighbors become alive, as from reproduction."
 CELL-4,"Live cells with 4 or more neighbors die, as from overpopulation."
+CELL-5,"Dead cells with more or less than 3 neighbors stay dead"
