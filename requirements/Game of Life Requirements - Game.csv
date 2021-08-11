@@ -1,0 +1,4 @@
+Id,Requirement
+GAME-1,The board starts with a randomly determined initial state
+GAME-2,"On each generation, the cell rules are applied to each cell simultaneously to create the next generation."
+GAME-3,The game ends when all cells have died.
