@@ -1,6 +1,10 @@
 package main
 
-import "regexp"
+import (
+	"io"
+	"regexp"
+	"strings"
+)
 
 type TokenType int
 
@@ -20,9 +24,12 @@ type TokenPattern struct {
 type Token struct {
 	Type  TokenType
 	Value string
+	Filename string
+	Line int
 }
 
 var Patterns []TokenPattern = []TokenPattern{
+	// C-Sharp matchers
 	{
 		Type:    ClassName,
 		Pattern: regexp.MustCompile(`public\s*class\s+([A-Za-z0-9_]+)`),
@@ -37,6 +44,8 @@ var Patterns []TokenPattern = []TokenPattern{
 	},
 }
 
+// GetToken returns the token type found on the given line.
+// It is limited to a single token per line.
 func GetToken(line string, patterns []TokenPattern) Token {
 
 	for _, p := range Patterns {
@@ -50,7 +59,28 @@ func GetToken(line string, patterns []TokenPattern) Token {
 	}
 
 	return Token{
-		Type:  EndOfFile,
-		Value: "Nada",
+		Type:  IgnoredLine,
+		Value: "",
 	}
+}
+
+// TokenizeStream returns a list of all the tokens in a given file.
+// In the event of i/o errors, error will be returned, but is nil otherwise.
+func TokenizeStream(r io.Reader, patterns []TokenPattern) []Token {
+
+	bytes, _ := io.ReadAll(r)
+	text := string(bytes)
+	lines := strings.Split(text, "\n")
+
+	var tokens []Token
+
+	for i, line := range(lines) {
+		t := GetToken(line, patterns)
+		if t.Type != IgnoredLine {
+			t.Line = i+1
+			tokens = append(tokens, t)
+		}
+	}
+
+	return tokens
 }
