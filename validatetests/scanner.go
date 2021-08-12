@@ -29,7 +29,7 @@ var Patterns []TokenPattern = []TokenPattern{
 	},
 	{
 		Type:    Requirement,
-		Pattern: regexp.MustCompile(`Requirement\s+([A-Za-z0-9-\.]+)`),
+		Pattern: regexp.MustCompile(`//+\s+Requirement\s+([A-Za-z0-9-\.]+)`),
 	},
 	{
 		Type:    MethodName,
