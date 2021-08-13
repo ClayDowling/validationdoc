@@ -29,6 +29,14 @@ type Token struct {
 	Line     int
 }
 
+type RequirementReference struct {
+	Requirement string
+	FileName    string
+	ClassName   string
+	MethodName  string
+	Line        int
+}
+
 var Patterns []TokenPattern = []TokenPattern{
 	// C-Sharp matchers
 	{
@@ -134,4 +142,36 @@ func TokenizeFile(filename string) ([]Token, error) {
 	}
 
 	return tokens, nil
+}
+
+// ParseTokens converts an array of tokens into an array of RequirementReferences.
+func ParseTokens(tokens []Token) []RequirementReference {
+
+	var classname Token
+	var requirement Token
+
+	references := []RequirementReference{}
+
+	for _, t := range tokens {
+		switch t.Type {
+		case ClassName:
+			classname = t
+			break
+		case Requirement:
+			requirement = t
+			break
+		case MethodName:
+			r := RequirementReference{
+				ClassName:   classname.Value,
+				MethodName:  t.Value,
+				Requirement: requirement.Value,
+				FileName:    t.Filename,
+				Line:        requirement.Line,
+			}
+			references = append(references, r)
+			break
+		}
+	}
+
+	return references
 }

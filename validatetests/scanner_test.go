@@ -126,3 +126,57 @@ func TestTokenizeFile_GivenAFileInThisFolder_ReturnsTokensWithCorrectFileName(t 
 		t.Fatal(err)
 	}
 }
+
+func TestParseTokens_GivenSampleTokens_ProducesTwoRequirementReferences(t *testing.T) {
+	expected := []RequirementReference{
+		{
+			FileName:    "validatetests/sample.cs",
+			ClassName:   "TestClass",
+			MethodName:  "DeadCellsStayDead",
+			Requirement: "Cell-5",
+			Line:        11,
+		},
+		{
+			FileName:    "validatetests/sample.cs",
+			ClassName:   "TestClass",
+			MethodName:  "LiveCellsDieFromLoneliness",
+			Requirement: "Cell-1",
+			Line:        17,
+		},
+	}
+
+	os.WriteFile("sample.cs", []byte(fileContents), 0644)
+	tokens, err := TokenizeFile("sample.cs")
+	if err != nil {
+		t.Fatal(err)
+	}
+	err = os.Remove("sample.cs")
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	actual := ParseTokens(tokens)
+
+	if len(actual) != 2 {
+		t.Fatalf("Expected 2 RequirementReferences, got %d", len(actual))
+	}
+
+	for i := 0; i < 2; i++ {
+		if actual[i].FileName != expected[i].FileName {
+			t.Errorf("Expected Filename %s, got %s", expected[i].FileName, actual[i].FileName)
+		}
+		if actual[i].ClassName != expected[i].ClassName {
+			t.Errorf("Expected ClassName %s, got %s", expected[i].ClassName, actual[i].ClassName)
+		}
+		if actual[i].MethodName != expected[i].MethodName {
+			t.Errorf("Expected MethodName %s, got %s", expected[i].MethodName, actual[i].MethodName)
+		}
+		if actual[i].Requirement != expected[i].Requirement {
+			t.Errorf("Expected Requirement %s, got %s", expected[i].Requirement, actual[i].Requirement)
+		}
+		if actual[i].Line != expected[i].Line {
+			t.Errorf("Expected Line %d, got %d", expected[i].Line, actual[i].Line)
+		}
+	}
+
+}
