@@ -1,6 +1,7 @@
 package main
 
 import (
+	"container/list"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -148,7 +149,7 @@ func TokenizeFile(filename string) ([]Token, error) {
 func ParseTokens(tokens []Token) []RequirementReference {
 
 	var classname Token
-	var requirement Token
+	requirement := list.New()
 
 	references := []RequirementReference{}
 
@@ -156,20 +157,21 @@ func ParseTokens(tokens []Token) []RequirementReference {
 		switch t.Type {
 		case ClassName:
 			classname = t
-			break
 		case Requirement:
-			requirement = t
-			break
+			requirement.PushBack(t)
 		case MethodName:
-			r := RequirementReference{
-				ClassName:   classname.Value,
-				MethodName:  t.Value,
-				Requirement: requirement.Value,
-				FileName:    t.Filename,
-				Line:        requirement.Line,
+			for e := requirement.Front(); e != nil; e = e.Next() {
+				req := e.Value.(Token)
+				r := RequirementReference{
+					ClassName:   classname.Value,
+					MethodName:  t.Value,
+					Requirement: req.Value,
+					FileName:    t.Filename,
+					Line:        req.Line,
+				}
+				references = append(references, r)
 			}
-			references = append(references, r)
-			break
+			requirement.Init()
 		}
 	}
 

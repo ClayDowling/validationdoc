@@ -180,3 +180,45 @@ func TestParseTokens_GivenSampleTokens_ProducesTwoRequirementReferences(t *testi
 	}
 
 }
+
+func TestParseTokens_GivenTwoRequirementsForAMethod_ReturnsTwoEntiresForThatMethod(t *testing.T) {
+	tokens := []Token{
+		{
+			Type:     ClassName,
+			Value:    "MyClass",
+			Filename: "test1.cs",
+		},
+		{
+			Type:     Requirement,
+			Value:    "REQ-1",
+			Line:     7,
+			Filename: "test1.cs",
+		},
+		{
+			Type:     Requirement,
+			Value:    "REQ-2",
+			Line:     8,
+			Filename: "test1.cs",
+		},
+		{
+			Type:     MethodName,
+			Value:    "MyTest",
+			Line:     9,
+			Filename: "test1.cs",
+		},
+	}
+
+	assert := assert.New(t)
+	actual := ParseTokens(tokens)
+
+	if len(actual) != 2 {
+		t.Fatalf("Expected 2 RequirementReferences, found %d", len(actual))
+	}
+
+	assert.ThatString(actual[0].Requirement).IsEqualTo("REQ-1")
+	assert.ThatString(actual[1].Requirement).IsEqualTo("REQ-2")
+
+	assert.ThatString(actual[0].MethodName).IsEqualTo("MyTest")
+	assert.ThatString(actual[1].MethodName).IsEqualTo("MyTest")
+
+}
