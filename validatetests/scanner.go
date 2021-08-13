@@ -2,6 +2,7 @@ package main
 
 import (
 	"os"
+	"path/filepath"
 	"regexp"
 	"strings"
 )
@@ -22,10 +23,10 @@ type TokenPattern struct {
 }
 
 type Token struct {
-	Type  TokenType
-	Value string
+	Type     TokenType
+	Value    string
 	Filename string
-	Line int
+	Line     int
 }
 
 var Patterns []TokenPattern = []TokenPattern{
@@ -51,8 +52,8 @@ func GetToken(line string, patterns []TokenPattern) Token {
 	for _, p := range Patterns {
 		a := p.Pattern.FindStringSubmatch(line)
 		if a != nil {
-			return Token {
-				Type: p.Type,
+			return Token{
+				Type:  p.Type,
 				Value: a[1],
 			}
 		}
@@ -72,15 +73,33 @@ func TokenizeStream(bytes []byte, patterns []TokenPattern) []Token {
 
 	var tokens []Token
 
-	for i, line := range(lines) {
+	for i, line := range lines {
 		t := GetToken(line, patterns)
 		if t.Type != IgnoredLine {
-			t.Line = i+1
+			t.Line = i + 1
 			tokens = append(tokens, t)
 		}
 	}
 
 	return tokens
+}
+
+func gitRoot(filename string) (string, error) {
+
+	parts := strings.Split(filename, string(os.PathSeparator))
+	for i := len(parts) - 2; i >= 0; i-- {
+		path := strings.Join(parts[0:i], string(os.PathSeparator))
+		candidate := path + string(os.PathSeparator) + ".git"
+		s, err := os.Stat(candidate)
+		if err != nil {
+			return "", err
+		}
+		if s.IsDir() {
+			return path, nil
+		}
+	}
+
+	return "", nil
 }
 
 // TokenizeFile parses the given file for known tokens.
@@ -89,12 +108,30 @@ func TokenizeStream(bytes []byte, patterns []TokenPattern) []Token {
 // the repository.
 func TokenizeFile(filename string) ([]Token, error) {
 
+	fullpath, err := filepath.Abs(filename)
+	if err != nil {
+		return []Token{}, err
+	}
+
+	repo, err := gitRoot(fullpath)
+	if err != nil {
+		return []Token{}, err
+	}
+	relpath, err := filepath.Rel(repo, fullpath)
+	if err != nil {
+		return []Token{}, err
+	}
+	relpath = filepath.ToSlash(relpath)
+
 	bytes, err := os.ReadFile(filename)
 	if err != nil {
 		return []Token{}, err
 	}
 
 	tokens := TokenizeStream(bytes, Patterns)
+	for i := 0; i < len(tokens); i++ {
+		tokens[i].Filename = relpath
+	}
 
 	return tokens, nil
 }

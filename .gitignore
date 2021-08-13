@@ -18,3 +18,4 @@
 *.user
 **/TestResults/
 *.idea
+**/.vscode/

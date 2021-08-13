@@ -75,7 +75,6 @@ func TestTokenizeStream_GivenTestClass_ReturnsTokensWithLineNumbers(t *testing.T
 
 	assert := assert.New(t)
 
-
 	tokens := TokenizeStream([]byte(fileContents), Patterns)
 	if len(tokens) != 5 {
 		t.Errorf("Expected 5 tokens, got %d", len(tokens))
@@ -108,7 +107,7 @@ func TestTokenizeStream_GivenTestClass_ReturnsTokensWithLineNumbers(t *testing.T
 }
 
 func TestTokenizeFile_GivenAFileInThisFolder_ReturnsTokensWithCorrectFileName(t *testing.T) {
-	os.WriteFile("sample.cs",  []byte(fileContents), 0644)
+	os.WriteFile("sample.cs", []byte(fileContents), 0644)
 
 	assert := assert.New(t)
 	tokens, err := TokenizeFile("sample.cs")
@@ -118,7 +117,12 @@ func TestTokenizeFile_GivenAFileInThisFolder_ReturnsTokensWithCorrectFileName(t 
 
 	assert.ThatInt(len(tokens)).IsEqualTo(5)
 
-	for _, t := range(tokens) {
-		assert.ThatString(t.Filename).IsEqualTo("/validatetests/sample.cs")
+	for _, t := range tokens {
+		assert.ThatString(t.Filename).IsEqualTo("validatetests/sample.cs")
+	}
+
+	err = os.Remove("sample.cs")
+	if err != nil {
+		t.Fatal(err)
 	}
 }
