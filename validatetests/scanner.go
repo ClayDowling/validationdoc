@@ -1,7 +1,7 @@
 package main
 
 import (
-	"io"
+	"os"
 	"regexp"
 	"strings"
 )
@@ -65,10 +65,8 @@ func GetToken(line string, patterns []TokenPattern) Token {
 }
 
 // TokenizeStream returns a list of all the tokens in a given file.
-// In the event of i/o errors, error will be returned, but is nil otherwise.
-func TokenizeStream(r io.Reader, patterns []TokenPattern) []Token {
+func TokenizeStream(bytes []byte, patterns []TokenPattern) []Token {
 
-	bytes, _ := io.ReadAll(r)
 	text := string(bytes)
 	lines := strings.Split(text, "\n")
 
@@ -83,4 +81,20 @@ func TokenizeStream(r io.Reader, patterns []TokenPattern) []Token {
 	}
 
 	return tokens
+}
+
+// TokenizeFile parses the given file for known tokens.
+// It will return an array of all of the tokens found in the file
+// Tokens will be populated with the filename relative to the top of
+// the repository.
+func TokenizeFile(filename string) ([]Token, error) {
+
+	bytes, err := os.ReadFile(filename)
+	if err != nil {
+		return []Token{}, err
+	}
+
+	tokens := TokenizeStream(bytes, Patterns)
+
+	return tokens, nil
 }

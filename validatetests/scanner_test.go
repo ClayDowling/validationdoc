@@ -1,11 +1,39 @@
 package main
 
 import (
-	"strings"
+	"os"
 	"testing"
 
 	"github.com/assertgo/assert"
 )
+
+const fileContents = `
+using XUnit;
+using FluentAssertions;
+using Requirements; // Totally bogus
+
+namespace Life {
+	
+	public class TestClass {
+		
+		[Fact]
+		// Requirement Cell-5
+		public void DeadCellsStayDead() {
+			Cell c = new Cell(false);
+			c.Lives(2).Should().BeFalse();
+		}
+
+		/// Requirement Cell-1
+		[Theory]
+		[InlineData(0)]
+		[InlineData(1)]
+		public void LiveCellsDieFromLoneliness(int n)
+		{
+			Cell c = new Cell(true);
+			c.Lives(n).Should().BeFalse();
+		}
+	}
+}`
 
 func TestGetToken_GivenAClassName_ReturnsClassNameToken(t *testing.T) {
 	assert := assert.New(t)
@@ -46,36 +74,9 @@ func TestGetToken_GivenRandomLines_ReturnsIgnoredLine(t *testing.T) {
 func TestTokenizeStream_GivenTestClass_ReturnsTokensWithLineNumbers(t *testing.T) {
 
 	assert := assert.New(t)
-	r := strings.NewReader(
-		`
-using XUnit;
-using FluentAssertions;
-using Requirements; // Totally bogus
 
-namespace Life {
-	
-	public class TestClass {
-		
-		[Fact]
-		// Requirement Cell-5
-		public void DeadCellsStayDead() {
-			Cell c = new Cell(false);
-			c.Lives(2).Should().BeFalse();
-		}
 
-		/// Requirement Cell-1
-		[Theory]
-		[InlineData(0)]
-		[InlineData(1)]
-		public void LiveCellsDieFromLoneliness(int n)
-		{
-			Cell c = new Cell(true);
-			c.Lives(n).Should().BeFalse();
-		}
-	}
-}`)
-
-	tokens := TokenizeStream(r, Patterns)
+	tokens := TokenizeStream([]byte(fileContents), Patterns)
 	if len(tokens) != 5 {
 		t.Errorf("Expected 5 tokens, got %d", len(tokens))
 	}
@@ -104,4 +105,20 @@ namespace Life {
 	assert.ThatString(tokens[4].Value).IsEqualTo("LiveCellsDieFromLoneliness")
 	assert.ThatInt(tokens[4].Line).IsEqualTo(21)
 	assert.ThatString(tokens[4].Filename).IsEmpty()
+}
+
+func TestTokenizeFile_GivenAFileInThisFolder_ReturnsTokensWithCorrectFileName(t *testing.T) {
+	os.WriteFile("sample.cs",  []byte(fileContents), 0644)
+
+	assert := assert.New(t)
+	tokens, err := TokenizeFile("sample.cs")
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	assert.ThatInt(len(tokens)).IsEqualTo(5)
+
+	for _, t := range(tokens) {
+		assert.ThatString(t.Filename).IsEqualTo("/validatetests/sample.cs")
+	}
 }
