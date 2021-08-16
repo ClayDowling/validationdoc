@@ -2,6 +2,7 @@ package main
 
 import (
 	"container/list"
+	"io/fs"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -37,6 +38,9 @@ type RequirementReference struct {
 	MethodName  string
 	Line        int
 }
+
+// References is a List of all RequirementReference objects found while parsing a folder.
+var References = list.New()
 
 var Patterns []TokenPattern = []TokenPattern{
 	// C-Sharp matchers
@@ -101,6 +105,9 @@ func gitRoot(filename string) (string, error) {
 		candidate := path + string(os.PathSeparator) + ".git"
 		s, err := os.Stat(candidate)
 		if err != nil {
+			if os.IsNotExist(err) {
+				continue
+			}
 			return "", err
 		}
 		if s.IsDir() {
@@ -176,4 +183,35 @@ func ParseTokens(tokens []Token) []RequirementReference {
 	}
 
 	return references
+}
+
+// TokenizeFolder finds all Requirement tokens in a folder and puts them in References.
+// In the event of an error it will return error, otherwise nil.
+func TokenizeFolder(foldername string) error {
+
+	err := filepath.WalkDir(foldername, TokenizeWalkFunc)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func TokenizeWalkFunc(path string, d fs.DirEntry, err error) error {
+
+	if d.Type().IsRegular() {
+
+		tokens, err := TokenizeFile(path)
+		if err != nil {
+			return err
+		}
+
+		refs := ParseTokens(tokens)
+
+		for _, r := range refs {
+			References.PushBack(r)
+		}
+	}
+
+	return nil
 }

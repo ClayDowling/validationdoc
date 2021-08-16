@@ -222,3 +222,19 @@ func TestParseTokens_GivenTwoRequirementsForAMethod_ReturnsTwoEntiresForThatMeth
 	assert.ThatString(actual[1].MethodName).IsEqualTo("MyTest")
 
 }
+
+func TestTokenizeFolder_GivenCSharpGameOfLife_ReturnsAtLeastTwoFiles(t *testing.T) {
+	err := TokenizeFolder("../c-sharp/gameoflife-tests")
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	files := map[string]int{}
+	for ri := References.Front(); ri != nil; ri = ri.Next() {
+		r := ri.Value.(RequirementReference)
+		files[r.FileName] = files[r.FileName] + 1
+	}
+
+	assert := assert.New(t)
+	assert.ThatInt(len(files)).IsGreaterOrEqualTo(2)
+}
