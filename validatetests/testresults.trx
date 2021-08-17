@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="816c4705-ba5f-4779-835a-4f25e499659b" name="clayton.c.dowling@CPX-V0N9APN9RPX 2021-08-11 16:26:27" runUser="DIR\clayton.c.dowling" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2021-08-11T16:26:27.4584084-04:00" queuing="2021-08-11T16:26:27.4584094-04:00" start="2021-08-11T16:26:26.1911299-04:00" finish="2021-08-11T16:26:27.4886425-04:00" />
+  <TestSettings name="default" id="ff8c0817-2985-43d9-aad4-eeaab0b682b2">
+    <Deployment runDeploymentRoot="clayton.c.dowling_CPX-V0N9APN9RPX_2021-08-11_16_26_27" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="9a66df19-70d3-4f6c-a4a4-4e80214777e0" testId="02472745-b2ae-a9af-8909-b0ca872d8ed4" testName="gameoflife_tests.CellTests.Lives_GivenLiveCellWith4OrMoveNeighbors_ReturnsFalse(neighbors: 7)" computerName="CPX-V0N9APN9RPX" duration="00:00:00.0000061" startTime="2021-08-11T16:26:27.4112515-04:00" endTime="2021-08-11T16:26:27.4112516-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9a66df19-70d3-4f6c-a4a4-4e80214777e0" />
+    <UnitTestResult executionId="1f37989c-d8d7-4718-abef-ca3a51e4e5aa" testId="7e67a20e-7494-cdb6-9651-72c104ca98fa" testName="gameoflife_tests.CellTests.Lives_GivenDeadCellWithNot3Neighbors_ReturnsFalse(neighbors: 2)" computerName="CPX-V0N9APN9RPX" duration="00:00:00.0831577" startTime="2021-08-11T16:26:27.3886982-04:00" endTime="2021-08-11T16:26:27.3886994-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1f37989c-d8d7-4718-abef-ca3a51e4e5aa">
+      <Output>
+        <ErrorInfo>
+          <Message>Expected c.Lives(neighbors) to be false, but found True.</Message>
+          <StackTrace>   at FluentAssertions.Execution.XUnit2TestFramework.Throw(String message)&#xD;
+   at FluentAssertions.Execution.TestFrameworkProvider.Throw(String message)&#xD;
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)&#xD;
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)&#xD;
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)&#xD;
+   at FluentAssertions.Execution.AssertionScope.FailWith(String message, Object[] args)&#xD;
+   at FluentAssertions.Primitives.BooleanAssertions.BeFalse(String because, Object[] becauseArgs)&#xD;
+   at gameoflife_tests.CellTests.Lives_GivenDeadCellWithNot3Neighbors_ReturnsFalse(Int32 neighbors) in C:\Users\clayton.c.dowling\workspace\validationdoc\c-sharp\gameoflife-tests\CellTests.cs:line 61</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="cbdc9e1d-0312-499d-b089-03bad894ce23" testId="02f46b00-8d3d-4011-0e4b-a0390c5a55c5" testName="gameoflife_tests.CellTests.Lives_GivenLiveCellWith4OrMoveNeighbors_ReturnsFalse(neighbors: 6)" computerName="CPX-V0N9APN9RPX" duration="00:00:00.0000034" startTime="2021-08-11T16:26:27.4113561-04:00" endTime="2021-08-11T16:26:27.4113563-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="cbdc9e1d-0312-499d-b089-03bad894ce23" />
+    <UnitTestResult executionId="2f501ea2-dc59-4d0b-b0d3-0dbaeb9edde0" testId="b2acd694-96f8-0b44-fd22-59b3e1eae364" testName="gameoflife_tests.CellTests.Lives_GiveLiveCellWith2Or3Neighbors_ReturnsTrue(neighbors: 2)" computerName="CPX-V0N9APN9RPX" duration="00:00:00.0000138" startTime="2021-08-11T16:26:27.3005370-04:00" endTime="2021-08-11T16:26:27.3005373-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2f501ea2-dc59-4d0b-b0d3-0dbaeb9edde0" />
+    <UnitTestResult executionId="ec919726-a364-4175-89cc-884041b7a83e" testId="fabdeb39-71b8-f20d-a1b8-a9e7a942b410" testName="gameoflife_tests.CellTests.Lives_GivenDeadCellWithNot3Neighbors_ReturnsFalse(neighbors: 5)" computerName="CPX-V0N9APN9RPX" duration="00:00:00.0000041" startTime="2021-08-11T16:26:27.4111783-04:00" endTime="2021-08-11T16:26:27.4111784-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ec919726-a364-4175-89cc-884041b7a83e" />
+    <UnitTestResult executionId="764beca9-f8ba-477e-9417-3ed69b241f90" testId="dfeb0537-3c85-6820-0475-e2809a55fa86" testName="gameoflife_tests.CellTests.Lives_GivenDeadCellWith3Neighbors_ReturnsTrue" computerName="CPX-V0N9APN9RPX" duration="00:00:00.0000706" startTime="2021-08-11T16:26:27.4113963-04:00" endTime="2021-08-11T16:26:27.4113964-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="764beca9-f8ba-477e-9417-3ed69b241f90" />
+    <UnitTestResult executionId="7230c3c9-c04b-45eb-9037-f3b48b59c3a7" testId="63c74021-098e-63eb-0d2f-a9554bdee0c8" testName="gameoflife_tests.CellTests.Lives_GivenDeadCellWithNot3Neighbors_ReturnsFalse(neighbors: 1)" computerName="CPX-V0N9APN9RPX" duration="00:00:00.0000043" startTime="2021-08-11T16:26:27.3889066-04:00" endTime="2021-08-11T16:26:27.3889067-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7230c3c9-c04b-45eb-9037-f3b48b59c3a7" />
+    <UnitTestResult executionId="3273579e-0e39-4ae1-aa40-b65c020b3193" testId="65b07c69-de88-090e-fad7-80fbacba2456" testName="gameoflife_tests.CellTests.Lives_GivenLiveCellWith4OrMoveNeighbors_ReturnsFalse(neighbors: 5)" computerName="CPX-V0N9APN9RPX" duration="00:00:00.0000890" startTime="2021-08-11T16:26:27.4112192-04:00" endTime="2021-08-11T16:26:27.4112193-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="3273579e-0e39-4ae1-aa40-b65c020b3193" />
+    <UnitTestResult executionId="f9931019-cd34-4d63-8685-6b0af1fa736e" testId="1af39ae7-5337-a934-8457-1d9b752977c1" testName="gameoflife_tests.CellTests.Lives_GivenZeroNeighbors_ReturnsFalse(neighbors: 1)" computerName="CPX-V0N9APN9RPX" duration="00:00:00.0000060" startTime="2021-08-11T16:26:27.3006608-04:00" endTime="2021-08-11T16:26:27.3006609-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f9931019-cd34-4d63-8685-6b0af1fa736e" />
+    <UnitTestResult executionId="dd2ca15b-c612-4ddd-835e-dd5ddc18484f" testId="6ac8a63e-93c8-fe18-5705-ffa27951c467" testName="gameoflife_tests.CellTests.Lives_GivenDeadCellWithNot3Neighbors_ReturnsFalse(neighbors: 7)" computerName="CPX-V0N9APN9RPX" duration="00:00:00.0000120" startTime="2021-08-11T16:26:27.3888712-04:00" endTime="2021-08-11T16:26:27.3888715-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="dd2ca15b-c612-4ddd-835e-dd5ddc18484f" />
+    <UnitTestResult executionId="e385ab01-3512-4528-9824-8237d28d61e1" testId="c3aeb676-0289-ecf7-b136-9ed3f09d78b8" testName="gameoflife_tests.CellTests.Lives_GivenLiveCellWith4OrMoveNeighbors_ReturnsFalse(neighbors: 8)" computerName="CPX-V0N9APN9RPX" duration="00:00:00.0000039" startTime="2021-08-11T16:26:27.4112883-04:00" endTime="2021-08-11T16:26:27.4112884-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e385ab01-3512-4528-9824-8237d28d61e1" />
+    <UnitTestResult executionId="5580fc7b-e3ac-4afa-a0db-387f5a42140a" testId="6eedf0cf-165b-18eb-f769-acade665ea18" testName="gameoflife_tests.CellTests.Lives_GivenDeadCellWithNot3Neighbors_ReturnsFalse(neighbors: 4)" computerName="CPX-V0N9APN9RPX" duration="00:00:00.0000038" startTime="2021-08-11T16:26:27.3889731-04:00" endTime="2021-08-11T16:26:27.3889732-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5580fc7b-e3ac-4afa-a0db-387f5a42140a" />
+    <UnitTestResult executionId="bee8ca83-3d22-4259-a4a5-10061c071135" testId="b10ca00a-4901-257a-8311-f6604de43702" testName="gameoflife_tests.CellTests.Lives_GivenLiveCellWith4OrMoveNeighbors_ReturnsFalse(neighbors: 4)" computerName="CPX-V0N9APN9RPX" duration="00:00:00.0000037" startTime="2021-08-11T16:26:27.4113203-04:00" endTime="2021-08-11T16:26:27.4113204-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="bee8ca83-3d22-4259-a4a5-10061c071135" />
+    <UnitTestResult executionId="0a336278-d0be-4b4c-b12a-7e000f6c8031" testId="757cbe10-00ab-c7bc-432c-6b3a25f8126b" testName="gameoflife_tests.CellTests.Lives_GivenDeadCellWithNot3Neighbors_ReturnsFalse(neighbors: 6)" computerName="CPX-V0N9APN9RPX" duration="00:00:00.0000041" startTime="2021-08-11T16:26:27.4111420-04:00" endTime="2021-08-11T16:26:27.4111423-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0a336278-d0be-4b4c-b12a-7e000f6c8031" />
+    <UnitTestResult executionId="1f21e09a-459b-4d08-80bd-d5757e732bc6" testId="ab7d07b2-8940-1e7b-4afa-6eba76d7948d" testName="gameoflife_tests.CellTests.Lives_GivenDeadCellWithNot3Neighbors_ReturnsFalse(neighbors: 8)" computerName="CPX-V0N9APN9RPX" duration="00:00:00.0000035" startTime="2021-08-11T16:26:27.3889414-04:00" endTime="2021-08-11T16:26:27.3889416-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1f21e09a-459b-4d08-80bd-d5757e732bc6" />
+    <UnitTestResult executionId="9c6c2c0e-dbf1-49d7-a47b-844e6f2089ea" testId="08b67843-a5e5-3e9e-a026-6001a9e833e5" testName="gameoflife_tests.CellTests.Lives_GivenDeadCellWithNot3Neighbors_ReturnsFalse(neighbors: 0)" computerName="CPX-V0N9APN9RPX" duration="00:00:00.0000045" startTime="2021-08-11T16:26:27.4110251-04:00" endTime="2021-08-11T16:26:27.4110255-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9c6c2c0e-dbf1-49d7-a47b-844e6f2089ea" />
+    <UnitTestResult executionId="08ca7ef1-142d-4b24-8d60-d79943cb286e" testId="8733f17d-89a7-4096-3d12-d16c638fd2a0" testName="gameoflife_tests.CellTests.Lives_GivenZeroNeighbors_ReturnsFalse(neighbors: 0)" computerName="CPX-V0N9APN9RPX" duration="00:00:00.0001597" startTime="2021-08-11T16:26:27.3006249-04:00" endTime="2021-08-11T16:26:27.3006252-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="08ca7ef1-142d-4b24-8d60-d79943cb286e" />
+    <UnitTestResult executionId="eb42458a-11b6-4ac8-95e0-03eb331af432" testId="07487488-00d2-ba71-6015-9697dd2d0e7c" testName="gameoflife_tests.CellTests.Lives_GiveLiveCellWith2Or3Neighbors_ReturnsTrue(neighbors: 3)" computerName="CPX-V0N9APN9RPX" duration="00:00:00.0026494" startTime="2021-08-11T16:26:27.2975235-04:00" endTime="2021-08-11T16:26:27.2975940-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="eb42458a-11b6-4ac8-95e0-03eb331af432" />
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="gameoflife_tests.CellTests.Lives_GivenLiveCellWith4OrMoveNeighbors_ReturnsFalse(neighbors: 8)" storage="c:\users\clayton.c.dowling\workspace\validationdoc\c-sharp\gameoflife-tests\bin\debug\net5.0\gameoflife-tests.dll" id="c3aeb676-0289-ecf7-b136-9ed3f09d78b8">
+      <Execution id="e385ab01-3512-4528-9824-8237d28d61e1" />
+      <TestMethod codeBase="C:\Users\clayton.c.dowling\workspace\validationdoc\c-sharp\gameoflife-tests\bin\Debug\net5.0\gameoflife-tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="gameoflife_tests.CellTests" name="Lives_GivenLiveCellWith4OrMoveNeighbors_ReturnsFalse" />
+    </UnitTest>
+    <UnitTest name="gameoflife_tests.CellTests.Lives_GivenZeroNeighbors_ReturnsFalse(neighbors: 0)" storage="c:\users\clayton.c.dowling\workspace\validationdoc\c-sharp\gameoflife-tests\bin\debug\net5.0\gameoflife-tests.dll" id="8733f17d-89a7-4096-3d12-d16c638fd2a0">
+      <Execution id="08ca7ef1-142d-4b24-8d60-d79943cb286e" />
+      <TestMethod codeBase="C:\Users\clayton.c.dowling\workspace\validationdoc\c-sharp\gameoflife-tests\bin\Debug\net5.0\gameoflife-tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="gameoflife_tests.CellTests" name="Lives_GivenZeroNeighbors_ReturnsFalse" />
+    </UnitTest>
+    <UnitTest name="gameoflife_tests.CellTests.Lives_GivenZeroNeighbors_ReturnsFalse(neighbors: 1)" storage="c:\users\clayton.c.dowling\workspace\validationdoc\c-sharp\gameoflife-tests\bin\debug\net5.0\gameoflife-tests.dll" id="1af39ae7-5337-a934-8457-1d9b752977c1">
+      <Execution id="f9931019-cd34-4d63-8685-6b0af1fa736e" />
+      <TestMethod codeBase="C:\Users\clayton.c.dowling\workspace\validationdoc\c-sharp\gameoflife-tests\bin\Debug\net5.0\gameoflife-tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="gameoflife_tests.CellTests" name="Lives_GivenZeroNeighbors_ReturnsFalse" />
+    </UnitTest>
+    <UnitTest name="gameoflife_tests.CellTests.Lives_GivenDeadCellWithNot3Neighbors_ReturnsFalse(neighbors: 6)" storage="c:\users\clayton.c.dowling\workspace\validationdoc\c-sharp\gameoflife-tests\bin\debug\net5.0\gameoflife-tests.dll" id="757cbe10-00ab-c7bc-432c-6b3a25f8126b">
+      <Execution id="0a336278-d0be-4b4c-b12a-7e000f6c8031" />
+      <TestMethod codeBase="C:\Users\clayton.c.dowling\workspace\validationdoc\c-sharp\gameoflife-tests\bin\Debug\net5.0\gameoflife-tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="gameoflife_tests.CellTests" name="Lives_GivenDeadCellWithNot3Neighbors_ReturnsFalse" />
+    </UnitTest>
+    <UnitTest name="gameoflife_tests.CellTests.Lives_GivenDeadCellWithNot3Neighbors_ReturnsFalse(neighbors: 4)" storage="c:\users\clayton.c.dowling\workspace\validationdoc\c-sharp\gameoflife-tests\bin\debug\net5.0\gameoflife-tests.dll" id="6eedf0cf-165b-18eb-f769-acade665ea18">
+      <Execution id="5580fc7b-e3ac-4afa-a0db-387f5a42140a" />
+      <TestMethod codeBase="C:\Users\clayton.c.dowling\workspace\validationdoc\c-sharp\gameoflife-tests\bin\Debug\net5.0\gameoflife-tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="gameoflife_tests.CellTests" name="Lives_GivenDeadCellWithNot3Neighbors_ReturnsFalse" />
+    </UnitTest>
+    <UnitTest name="gameoflife_tests.CellTests.Lives_GivenDeadCellWithNot3Neighbors_ReturnsFalse(neighbors: 1)" storage="c:\users\clayton.c.dowling\workspace\validationdoc\c-sharp\gameoflife-tests\bin\debug\net5.0\gameoflife-tests.dll" id="63c74021-098e-63eb-0d2f-a9554bdee0c8">
+      <Execution id="7230c3c9-c04b-45eb-9037-f3b48b59c3a7" />
+      <TestMethod codeBase="C:\Users\clayton.c.dowling\workspace\validationdoc\c-sharp\gameoflife-tests\bin\Debug\net5.0\gameoflife-tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="gameoflife_tests.CellTests" name="Lives_GivenDeadCellWithNot3Neighbors_ReturnsFalse" />
+    </UnitTest>
+    <UnitTest name="gameoflife_tests.CellTests.Lives_GivenDeadCellWithNot3Neighbors_ReturnsFalse(neighbors: 0)" storage="c:\users\clayton.c.dowling\workspace\validationdoc\c-sharp\gameoflife-tests\bin\debug\net5.0\gameoflife-tests.dll" id="08b67843-a5e5-3e9e-a026-6001a9e833e5">
+      <Execution id="9c6c2c0e-dbf1-49d7-a47b-844e6f2089ea" />
+      <TestMethod codeBase="C:\Users\clayton.c.dowling\workspace\validationdoc\c-sharp\gameoflife-tests\bin\Debug\net5.0\gameoflife-tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="gameoflife_tests.CellTests" name="Lives_GivenDeadCellWithNot3Neighbors_ReturnsFalse" />
+    </UnitTest>
+    <UnitTest name="gameoflife_tests.CellTests.Lives_GivenLiveCellWith4OrMoveNeighbors_ReturnsFalse(neighbors: 7)" storage="c:\users\clayton.c.dowling\workspace\validationdoc\c-sharp\gameoflife-tests\bin\debug\net5.0\gameoflife-tests.dll" id="02472745-b2ae-a9af-8909-b0ca872d8ed4">
+      <Execution id="9a66df19-70d3-4f6c-a4a4-4e80214777e0" />
+      <TestMethod codeBase="C:\Users\clayton.c.dowling\workspace\validationdoc\c-sharp\gameoflife-tests\bin\Debug\net5.0\gameoflife-tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="gameoflife_tests.CellTests" name="Lives_GivenLiveCellWith4OrMoveNeighbors_ReturnsFalse" />
+    </UnitTest>
+    <UnitTest name="gameoflife_tests.CellTests.Lives_GiveLiveCellWith2Or3Neighbors_ReturnsTrue(neighbors: 2)" storage="c:\users\clayton.c.dowling\workspace\validationdoc\c-sharp\gameoflife-tests\bin\debug\net5.0\gameoflife-tests.dll" id="b2acd694-96f8-0b44-fd22-59b3e1eae364">
+      <Execution id="2f501ea2-dc59-4d0b-b0d3-0dbaeb9edde0" />
+      <TestMethod codeBase="C:\Users\clayton.c.dowling\workspace\validationdoc\c-sharp\gameoflife-tests\bin\Debug\net5.0\gameoflife-tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="gameoflife_tests.CellTests" name="Lives_GiveLiveCellWith2Or3Neighbors_ReturnsTrue" />
+    </UnitTest>
+    <UnitTest name="gameoflife_tests.CellTests.Lives_GivenDeadCellWithNot3Neighbors_ReturnsFalse(neighbors: 2)" storage="c:\users\clayton.c.dowling\workspace\validationdoc\c-sharp\gameoflife-tests\bin\debug\net5.0\gameoflife-tests.dll" id="7e67a20e-7494-cdb6-9651-72c104ca98fa">
+      <Execution id="1f37989c-d8d7-4718-abef-ca3a51e4e5aa" />
+      <TestMethod codeBase="C:\Users\clayton.c.dowling\workspace\validationdoc\c-sharp\gameoflife-tests\bin\Debug\net5.0\gameoflife-tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="gameoflife_tests.CellTests" name="Lives_GivenDeadCellWithNot3Neighbors_ReturnsFalse" />
+    </UnitTest>
+    <UnitTest name="gameoflife_tests.CellTests.Lives_GivenLiveCellWith4OrMoveNeighbors_ReturnsFalse(neighbors: 4)" storage="c:\users\clayton.c.dowling\workspace\validationdoc\c-sharp\gameoflife-tests\bin\debug\net5.0\gameoflife-tests.dll" id="b10ca00a-4901-257a-8311-f6604de43702">
+      <Execution id="bee8ca83-3d22-4259-a4a5-10061c071135" />
+      <TestMethod codeBase="C:\Users\clayton.c.dowling\workspace\validationdoc\c-sharp\gameoflife-tests\bin\Debug\net5.0\gameoflife-tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="gameoflife_tests.CellTests" name="Lives_GivenLiveCellWith4OrMoveNeighbors_ReturnsFalse" />
+    </UnitTest>
+    <UnitTest name="gameoflife_tests.CellTests.Lives_GivenDeadCellWith3Neighbors_ReturnsTrue" storage="c:\users\clayton.c.dowling\workspace\validationdoc\c-sharp\gameoflife-tests\bin\debug\net5.0\gameoflife-tests.dll" id="dfeb0537-3c85-6820-0475-e2809a55fa86">
+      <Execution id="764beca9-f8ba-477e-9417-3ed69b241f90" />
+      <TestMethod codeBase="C:\Users\clayton.c.dowling\workspace\validationdoc\c-sharp\gameoflife-tests\bin\Debug\net5.0\gameoflife-tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="gameoflife_tests.CellTests" name="Lives_GivenDeadCellWith3Neighbors_ReturnsTrue" />
+    </UnitTest>
+    <UnitTest name="gameoflife_tests.CellTests.Lives_GivenDeadCellWithNot3Neighbors_ReturnsFalse(neighbors: 8)" storage="c:\users\clayton.c.dowling\workspace\validationdoc\c-sharp\gameoflife-tests\bin\debug\net5.0\gameoflife-tests.dll" id="ab7d07b2-8940-1e7b-4afa-6eba76d7948d">
+      <Execution id="1f21e09a-459b-4d08-80bd-d5757e732bc6" />
+      <TestMethod codeBase="C:\Users\clayton.c.dowling\workspace\validationdoc\c-sharp\gameoflife-tests\bin\Debug\net5.0\gameoflife-tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="gameoflife_tests.CellTests" name="Lives_GivenDeadCellWithNot3Neighbors_ReturnsFalse" />
+    </UnitTest>
+    <UnitTest name="gameoflife_tests.CellTests.Lives_GivenLiveCellWith4OrMoveNeighbors_ReturnsFalse(neighbors: 6)" storage="c:\users\clayton.c.dowling\workspace\validationdoc\c-sharp\gameoflife-tests\bin\debug\net5.0\gameoflife-tests.dll" id="02f46b00-8d3d-4011-0e4b-a0390c5a55c5">
+      <Execution id="cbdc9e1d-0312-499d-b089-03bad894ce23" />
+      <TestMethod codeBase="C:\Users\clayton.c.dowling\workspace\validationdoc\c-sharp\gameoflife-tests\bin\Debug\net5.0\gameoflife-tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="gameoflife_tests.CellTests" name="Lives_GivenLiveCellWith4OrMoveNeighbors_ReturnsFalse" />
+    </UnitTest>
+    <UnitTest name="gameoflife_tests.CellTests.Lives_GiveLiveCellWith2Or3Neighbors_ReturnsTrue(neighbors: 3)" storage="c:\users\clayton.c.dowling\workspace\validationdoc\c-sharp\gameoflife-tests\bin\debug\net5.0\gameoflife-tests.dll" id="07487488-00d2-ba71-6015-9697dd2d0e7c">
+      <Execution id="eb42458a-11b6-4ac8-95e0-03eb331af432" />
+      <TestMethod codeBase="C:\Users\clayton.c.dowling\workspace\validationdoc\c-sharp\gameoflife-tests\bin\Debug\net5.0\gameoflife-tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="gameoflife_tests.CellTests" name="Lives_GiveLiveCellWith2Or3Neighbors_ReturnsTrue" />
+    </UnitTest>
+    <UnitTest name="gameoflife_tests.CellTests.Lives_GivenDeadCellWithNot3Neighbors_ReturnsFalse(neighbors: 7)" storage="c:\users\clayton.c.dowling\workspace\validationdoc\c-sharp\gameoflife-tests\bin\debug\net5.0\gameoflife-tests.dll" id="6ac8a63e-93c8-fe18-5705-ffa27951c467">
+      <Execution id="dd2ca15b-c612-4ddd-835e-dd5ddc18484f" />
+      <TestMethod codeBase="C:\Users\clayton.c.dowling\workspace\validationdoc\c-sharp\gameoflife-tests\bin\Debug\net5.0\gameoflife-tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="gameoflife_tests.CellTests" name="Lives_GivenDeadCellWithNot3Neighbors_ReturnsFalse" />
+    </UnitTest>
+    <UnitTest name="gameoflife_tests.CellTests.Lives_GivenLiveCellWith4OrMoveNeighbors_ReturnsFalse(neighbors: 5)" storage="c:\users\clayton.c.dowling\workspace\validationdoc\c-sharp\gameoflife-tests\bin\debug\net5.0\gameoflife-tests.dll" id="65b07c69-de88-090e-fad7-80fbacba2456">
+      <Execution id="3273579e-0e39-4ae1-aa40-b65c020b3193" />
+      <TestMethod codeBase="C:\Users\clayton.c.dowling\workspace\validationdoc\c-sharp\gameoflife-tests\bin\Debug\net5.0\gameoflife-tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="gameoflife_tests.CellTests" name="Lives_GivenLiveCellWith4OrMoveNeighbors_ReturnsFalse" />
+    </UnitTest>
+    <UnitTest name="gameoflife_tests.CellTests.Lives_GivenDeadCellWithNot3Neighbors_ReturnsFalse(neighbors: 5)" storage="c:\users\clayton.c.dowling\workspace\validationdoc\c-sharp\gameoflife-tests\bin\debug\net5.0\gameoflife-tests.dll" id="fabdeb39-71b8-f20d-a1b8-a9e7a942b410">
+      <Execution id="ec919726-a364-4175-89cc-884041b7a83e" />
+      <TestMethod codeBase="C:\Users\clayton.c.dowling\workspace\validationdoc\c-sharp\gameoflife-tests\bin\Debug\net5.0\gameoflife-tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="gameoflife_tests.CellTests" name="Lives_GivenDeadCellWithNot3Neighbors_ReturnsFalse" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="02472745-b2ae-a9af-8909-b0ca872d8ed4" executionId="9a66df19-70d3-4f6c-a4a4-4e80214777e0" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7e67a20e-7494-cdb6-9651-72c104ca98fa" executionId="1f37989c-d8d7-4718-abef-ca3a51e4e5aa" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="02f46b00-8d3d-4011-0e4b-a0390c5a55c5" executionId="cbdc9e1d-0312-499d-b089-03bad894ce23" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b2acd694-96f8-0b44-fd22-59b3e1eae364" executionId="2f501ea2-dc59-4d0b-b0d3-0dbaeb9edde0" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="fabdeb39-71b8-f20d-a1b8-a9e7a942b410" executionId="ec919726-a364-4175-89cc-884041b7a83e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="dfeb0537-3c85-6820-0475-e2809a55fa86" executionId="764beca9-f8ba-477e-9417-3ed69b241f90" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="63c74021-098e-63eb-0d2f-a9554bdee0c8" executionId="7230c3c9-c04b-45eb-9037-f3b48b59c3a7" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="65b07c69-de88-090e-fad7-80fbacba2456" executionId="3273579e-0e39-4ae1-aa40-b65c020b3193" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="1af39ae7-5337-a934-8457-1d9b752977c1" executionId="f9931019-cd34-4d63-8685-6b0af1fa736e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="6ac8a63e-93c8-fe18-5705-ffa27951c467" executionId="dd2ca15b-c612-4ddd-835e-dd5ddc18484f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c3aeb676-0289-ecf7-b136-9ed3f09d78b8" executionId="e385ab01-3512-4528-9824-8237d28d61e1" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="6eedf0cf-165b-18eb-f769-acade665ea18" executionId="5580fc7b-e3ac-4afa-a0db-387f5a42140a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b10ca00a-4901-257a-8311-f6604de43702" executionId="bee8ca83-3d22-4259-a4a5-10061c071135" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="757cbe10-00ab-c7bc-432c-6b3a25f8126b" executionId="0a336278-d0be-4b4c-b12a-7e000f6c8031" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ab7d07b2-8940-1e7b-4afa-6eba76d7948d" executionId="1f21e09a-459b-4d08-80bd-d5757e732bc6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="08b67843-a5e5-3e9e-a026-6001a9e833e5" executionId="9c6c2c0e-dbf1-49d7-a47b-844e6f2089ea" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="8733f17d-89a7-4096-3d12-d16c638fd2a0" executionId="08ca7ef1-142d-4b24-8d60-d79943cb286e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="07487488-00d2-ba71-6015-9697dd2d0e7c" executionId="eb42458a-11b6-4ac8-95e0-03eb331af432" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Failed">
+    <Counters total="18" executed="18" passed="17" failed="1" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v2.4.3+1b45f5407b (64-bit .NET 5.0.4)&#xD;
+[xUnit.net 00:00:00.38]   Discovering: gameoflife-tests&#xD;
+[xUnit.net 00:00:00.42]   Discovered:  gameoflife-tests&#xD;
+[xUnit.net 00:00:00.42]   Starting:    gameoflife-tests&#xD;
+[xUnit.net 00:00:00.55]       Expected c.Lives(neighbors) to be false, but found True.&#xD;
+[xUnit.net 00:00:00.56]       Stack Trace:&#xD;
+[xUnit.net 00:00:00.56]            at FluentAssertions.Execution.XUnit2TestFramework.Throw(String message)&#xD;
+[xUnit.net 00:00:00.56]            at FluentAssertions.Execution.TestFrameworkProvider.Throw(String message)&#xD;
+[xUnit.net 00:00:00.56]            at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)&#xD;
+[xUnit.net 00:00:00.56]            at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)&#xD;
+[xUnit.net 00:00:00.56]            at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)&#xD;
+[xUnit.net 00:00:00.56]            at FluentAssertions.Execution.AssertionScope.FailWith(String message, Object[] args)&#xD;
+[xUnit.net 00:00:00.56]            at FluentAssertions.Primitives.BooleanAssertions.BeFalse(String because, Object[] becauseArgs)&#xD;
+[xUnit.net 00:00:00.56]         C:\Users\clayton.c.dowling\workspace\validationdoc\c-sharp\gameoflife-tests\CellTests.cs(61,0): at gameoflife_tests.CellTests.Lives_GivenDeadCellWithNot3Neighbors_ReturnsFalse(Int32 neighbors)&#xD;
+[xUnit.net 00:00:00.58]   Finished:    gameoflife-tests&#xD;
+</StdOut>
+    </Output>
+    <RunInfos>
+      <RunInfo computerName="CPX-V0N9APN9RPX" outcome="Error" timestamp="2021-08-11T16:26:27.3864307-04:00">
+        <Text>[xUnit.net 00:00:00.55]     gameoflife_tests.CellTests.Lives_GivenDeadCellWithNot3Neighbors_ReturnsFalse(neighbors: 2) [FAIL]</Text>
+      </RunInfo>
+    </RunInfos>
+  </ResultSummary>
+</TestRun>

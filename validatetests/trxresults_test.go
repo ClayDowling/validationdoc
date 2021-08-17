@@ -1,20 +1,54 @@
 package main
 
 import (
+	"github.com/assertgo/assert"
+	"os"
+	"strings"
 	"testing"
 )
 
 func TestTrxResults_GivenTrxFile_ReturnsListOfTests(t *testing.T) {
-	actual, err := TrxResults("../c-sharp/gameoflife-tests/TestResults/testresults.trx")
+	actual, err := TrxResults("testresults.trx")
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	for k, v := range actual {
-		t.Logf("UnitTestResult %s: %v", k, v)
-	}
-
-	if len(actual) != 3 {
+	if len(actual) != 5 {
 		t.Errorf("Expected 3 entries, found %d", len(actual))
 	}
+
+	for k, _ := range actual {
+		if strings.IndexRune(k, '(') != -1 {
+			t.Errorf("Found name with parens '%s'", k)
+		}
+	}
+}
+
+func TestTrxResults_GivenTestWithOnePassAndOneFail_MarksTestAsFailing(t *testing.T) {
+
+	blob := `
+<TestRun>
+  <Results>
+    <UnitTestResult testName="TestClass.FirstUnitTest(arg: 1)" outcome="Passed" />
+	<UnitTestResult testName="TestClass.FirstUnitTest(arg: 2)" outcome="Failed" />
+	<UnitTestResult testName="TestClass.SecondUnitTest" outcome="Passed" />
+	<UnitTestResult testName="TestClass.ThirdUnitTest(arg: 3)" outcome="Passed" />
+	<UnitTestResult testName="TestClass.ThirdUnitTest(arg: 4)" outcome="Error" />
+  </Results>
+</TestRun>
+`
+	os.WriteFile("sample.trx", []byte(blob), 0644)
+
+	actual, err := TrxResults("sample.trx")
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	assert := assert.New(t)
+	assert.ThatBool(actual["TestClass.FirstUnitTest"]).IsFalse()
+	assert.ThatBool(actual["TestClass.SecondUnitTest"]).IsTrue()
+	assert.ThatBool(actual["TestClass.ThirdUnitTest"]).IsFalse()
+
+	os.Remove("sample.trx")
+
 }

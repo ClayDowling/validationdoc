@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/xml"
 	"os"
+	"strings"
 )
 
 // UnitTestResult holds the results from an actual unit test.
@@ -11,9 +12,13 @@ type UnitTestResult struct {
 	Outcome  string `xml:"outcome,attr"`  // Outcome, which is Passed, Failed, or Error
 }
 
+type ResultsType struct {
+	Entries []UnitTestResult `xml:"UnitTestResult"`
+}
+
 // TestRun holds the results of a test run for a dotnet test file
 type TestRun struct {
-	Results []UnitTestResult // Results of the individual test runs
+	Results ResultsType // Results of the individual test runs
 }
 
 // TrxResults scans a Microsoft test results file and returns a map of all tests and whether they pass or fail.
@@ -35,13 +40,17 @@ func TrxResults(filename string) (map[string]bool, error) {
 		return tests, err
 	}
 
-	for _, t := range run.Results {
+	for _, t := range run.Results.Entries {
 		name := t.TestName
-		// parenindex := strings.IndexRune(t.TestName, '(')
-		// if parenindex != -1 {
-		// 	name = name[:parenindex]
-		// }
-		tests[name] = true
+		parenindex := strings.IndexRune(t.TestName, '(')
+		if parenindex != -1 {
+			name = name[:parenindex]
+		}
+		existing, ok := tests[name]
+		if ok && false == existing {
+			continue
+		}
+		tests[name] = t.Outcome == "Passed"
 	}
 
 	return tests, nil
