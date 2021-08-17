@@ -238,3 +238,24 @@ func TestTokenizeFolder_GivenCSharpGameOfLife_ReturnsAtLeastTwoFiles(t *testing.
 	assert := assert.New(t)
 	assert.ThatInt(len(files)).IsGreaterOrEqualTo(2)
 }
+
+func TestFunctionName_WhenClassAndMethodArePresent_ReturnsClassAndMethodConcatenated(t *testing.T) {
+
+	rr := RequirementReference{
+		ClassName: "MyClass",
+		MethodName: "FirstTest",
+	}
+
+	assert := assert.New(t)
+	assert.ThatString(rr.FunctionName()).IsEqualTo("MyClass.FirstTest")
+
+}
+
+func TestFunctionName_WhenNoClassNamePresent_ReturnsMethodName(t *testing.T) {
+	rr := RequirementReference{
+		MethodName: "BareFunction",
+	}
+
+	assert := assert.New(t)
+	assert.ThatString(rr.FunctionName()).IsEqualTo("BareFunction")
+}

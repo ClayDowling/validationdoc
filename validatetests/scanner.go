@@ -2,6 +2,7 @@ package main
 
 import (
 	"container/list"
+	"fmt"
 	"io/fs"
 	"os"
 	"path/filepath"
@@ -37,6 +38,13 @@ type RequirementReference struct {
 	ClassName   string
 	MethodName  string
 	Line        int
+}
+
+func (rr *RequirementReference) FunctionName() string {
+	if rr.ClassName == "" {
+		return rr.MethodName
+	}
+	return fmt.Sprintf("%s.%s", rr.ClassName, rr.MethodName)
 }
 
 // References is a List of all RequirementReference objects found while parsing a folder.
@@ -215,3 +223,4 @@ func TokenizeWalkFunc(path string, d fs.DirEntry, err error) error {
 
 	return nil
 }
+
