@@ -21,11 +21,11 @@ type TestRun struct {
 	Results ResultsType // Results of the individual test runs
 }
 
-// TrxResults scans a Microsoft test results file and returns a map of all tests and whether they pass or fail.
+// LoadTrxResults scans a Microsoft test results file and returns a map of all tests and whether they pass or fail.
 // Test names are unique by class and method name.  For parameterized tests, the collection of all invocations is
 // considered the same test.  Any result other than "Passed" across all invocations of a test method is considered
 // a failing test.
-func TrxResults(filename string) (map[string]bool, error) {
+func LoadTrxResults(filename string) (map[string]bool, error) {
 
 	tests := map[string]bool{}
 
@@ -46,8 +46,8 @@ func TrxResults(filename string) (map[string]bool, error) {
 		if parenindex != -1 {
 			name = name[:parenindex]
 		}
-		existing, ok := tests[name]
-		if ok && false == existing {
+		existingvalue, ok := tests[name]
+		if ok && !existingvalue {
 			continue
 		}
 		tests[name] = t.Outcome == "Passed"

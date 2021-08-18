@@ -1,14 +1,15 @@
 package main
 
 import (
-	"github.com/assertgo/assert"
 	"os"
 	"strings"
 	"testing"
+
+	"github.com/assertgo/assert"
 )
 
 func TestTrxResults_GivenTrxFile_ReturnsListOfTests(t *testing.T) {
-	actual, err := TrxResults("testresults.trx")
+	actual, err := LoadTrxResults("testresults.trx")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -17,8 +18,8 @@ func TestTrxResults_GivenTrxFile_ReturnsListOfTests(t *testing.T) {
 		t.Errorf("Expected 3 entries, found %d", len(actual))
 	}
 
-	for k, _ := range actual {
-		if strings.IndexRune(k, '(') != -1 {
+	for k := range actual {
+		if strings.ContainsRune(k, '(') {
 			t.Errorf("Found name with parens '%s'", k)
 		}
 	}
@@ -39,7 +40,7 @@ func TestTrxResults_GivenTestWithOnePassAndOneFail_MarksTestAsFailing(t *testing
 `
 	os.WriteFile("sample.trx", []byte(blob), 0644)
 
-	actual, err := TrxResults("sample.trx")
+	actual, err := LoadTrxResults("sample.trx")
 	if err != nil {
 		t.Fatal(err)
 	}

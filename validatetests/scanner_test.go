@@ -49,7 +49,7 @@ func TestGetToken_GivenARequirement_ReturnsRequirementToken(t *testing.T) {
 
 	actual := GetToken(" /// Requirement CELL-1 ", Patterns)
 
-	assert.ThatInt(int(actual.Type)).IsEqualTo(Requirement)
+	assert.ThatInt(int(actual.Type)).IsEqualTo(RequirementLabel)
 	assert.ThatString(actual.Value).IsEqualTo("CELL-1")
 }
 
@@ -85,7 +85,7 @@ func TestTokenizeStream_GivenTestClass_ReturnsTokensWithLineNumbers(t *testing.T
 	assert.ThatInt(tokens[0].Line).IsEqualTo(8)
 	assert.ThatString(tokens[0].Filename).IsEmpty()
 
-	assert.ThatInt(int(tokens[1].Type)).IsEqualTo(Requirement)
+	assert.ThatInt(int(tokens[1].Type)).IsEqualTo(RequirementLabel)
 	assert.ThatString(tokens[1].Value).IsEqualTo("Cell-5")
 	assert.ThatInt(tokens[1].Line).IsEqualTo(11)
 	assert.ThatString(tokens[1].Filename).IsEmpty()
@@ -95,7 +95,7 @@ func TestTokenizeStream_GivenTestClass_ReturnsTokensWithLineNumbers(t *testing.T
 	assert.ThatInt(tokens[2].Line).IsEqualTo(12)
 	assert.ThatString(tokens[2].Filename).IsEmpty()
 
-	assert.ThatInt(int(tokens[3].Type)).IsEqualTo(Requirement)
+	assert.ThatInt(int(tokens[3].Type)).IsEqualTo(RequirementLabel)
 	assert.ThatString(tokens[3].Value).IsEqualTo("Cell-1")
 	assert.ThatInt(tokens[3].Line).IsEqualTo(17)
 	assert.ThatString(tokens[3].Filename).IsEmpty()
@@ -172,7 +172,7 @@ func TestParseTokens_GivenSampleTokens_ProducesTwoRequirementReferences(t *testi
 			t.Errorf("Expected MethodName %s, got %s", expected[i].MethodName, actual[i].MethodName)
 		}
 		if actual[i].Requirement != expected[i].Requirement {
-			t.Errorf("Expected Requirement %s, got %s", expected[i].Requirement, actual[i].Requirement)
+			t.Errorf("Expected RequirementLabel %s, got %s", expected[i].Requirement, actual[i].Requirement)
 		}
 		if actual[i].Line != expected[i].Line {
 			t.Errorf("Expected Line %d, got %d", expected[i].Line, actual[i].Line)
@@ -189,13 +189,13 @@ func TestParseTokens_GivenTwoRequirementsForAMethod_ReturnsTwoEntiresForThatMeth
 			Filename: "test1.cs",
 		},
 		{
-			Type:     Requirement,
+			Type:     RequirementLabel,
 			Value:    "REQ-1",
 			Line:     7,
 			Filename: "test1.cs",
 		},
 		{
-			Type:     Requirement,
+			Type:     RequirementLabel,
 			Value:    "REQ-2",
 			Line:     8,
 			Filename: "test1.cs",

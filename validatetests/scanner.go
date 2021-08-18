@@ -13,11 +13,11 @@ import (
 type TokenType int
 
 const (
-	EndOfFile   TokenType = iota
-	ClassName             = iota
-	Requirement           = iota
-	MethodName            = iota
-	IgnoredLine           = iota
+	EndOfFile        TokenType = iota
+	ClassName                  = iota
+	RequirementLabel           = iota
+	MethodName                 = iota
+	IgnoredLine                = iota
 )
 
 type TokenPattern struct {
@@ -57,7 +57,7 @@ var Patterns []TokenPattern = []TokenPattern{
 		Pattern: regexp.MustCompile(`public\s*class\s+([A-Za-z0-9_]+)`),
 	},
 	{
-		Type:    Requirement,
+		Type:    RequirementLabel,
 		Pattern: regexp.MustCompile(`//+\s+Requirement\s+([A-Za-z0-9-\.]+)`),
 	},
 	{
@@ -172,7 +172,7 @@ func ParseTokens(tokens []Token) []RequirementReference {
 		switch t.Type {
 		case ClassName:
 			classname = t
-		case Requirement:
+		case RequirementLabel:
 			requirement.PushBack(t)
 		case MethodName:
 			for e := requirement.Front(); e != nil; e = e.Next() {
@@ -193,7 +193,7 @@ func ParseTokens(tokens []Token) []RequirementReference {
 	return references
 }
 
-// TokenizeFolder finds all Requirement tokens in a folder and puts them in References.
+// TokenizeFolder finds all RequirementLabel tokens in a folder and puts them in References.
 // In the event of an error it will return error, otherwise nil.
 func TokenizeFolder(foldername string) error {
 
@@ -223,4 +223,3 @@ func TokenizeWalkFunc(path string, d fs.DirEntry, err error) error {
 
 	return nil
 }
-
