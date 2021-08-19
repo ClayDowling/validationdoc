@@ -33,11 +33,11 @@ type Token struct {
 }
 
 type RequirementReference struct {
-	Requirement string
-	FileName    string
-	ClassName   string
-	MethodName  string
-	Line        int
+	Id         string
+	FileName   string
+	ClassName  string
+	MethodName string
+	Line       int
 }
 
 func (rr *RequirementReference) FunctionName() string {
@@ -178,11 +178,11 @@ func ParseTokens(tokens []Token) []RequirementReference {
 			for e := requirement.Front(); e != nil; e = e.Next() {
 				req := e.Value.(Token)
 				r := RequirementReference{
-					ClassName:   classname.Value,
-					MethodName:  t.Value,
-					Requirement: req.Value,
-					FileName:    t.Filename,
-					Line:        req.Line,
+					ClassName:  classname.Value,
+					MethodName: t.Value,
+					Id:         req.Value,
+					FileName:   t.Filename,
+					Line:       req.Line,
 				}
 				references = append(references, r)
 			}
@@ -222,4 +222,19 @@ func TokenizeWalkFunc(path string, d fs.DirEntry, err error) error {
 	}
 
 	return nil
+}
+
+// Return all RequirementReferences which match the given ID in the global References list.
+func ReferencesForRequirement(id string) []RequirementReference {
+
+	var result = []RequirementReference{}
+
+	for e := References.Front(); e != nil; e = e.Next() {
+		r := e.Value.(RequirementReference)
+		if r.Id == id {
+			result = append(result, r)
+		}
+	}
+
+	return result
 }

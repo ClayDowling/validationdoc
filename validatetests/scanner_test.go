@@ -130,18 +130,18 @@ func TestTokenizeFile_GivenAFileInThisFolder_ReturnsTokensWithCorrectFileName(t 
 func TestParseTokens_GivenSampleTokens_ProducesTwoRequirementReferences(t *testing.T) {
 	expected := []RequirementReference{
 		{
-			FileName:    "validatetests/sample.cs",
-			ClassName:   "TestClass",
-			MethodName:  "DeadCellsStayDead",
-			Requirement: "Cell-5",
-			Line:        11,
+			FileName:   "validatetests/sample.cs",
+			ClassName:  "TestClass",
+			MethodName: "DeadCellsStayDead",
+			Id:         "Cell-5",
+			Line:       11,
 		},
 		{
-			FileName:    "validatetests/sample.cs",
-			ClassName:   "TestClass",
-			MethodName:  "LiveCellsDieFromLoneliness",
-			Requirement: "Cell-1",
-			Line:        17,
+			FileName:   "validatetests/sample.cs",
+			ClassName:  "TestClass",
+			MethodName: "LiveCellsDieFromLoneliness",
+			Id:         "Cell-1",
+			Line:       17,
 		},
 	}
 
@@ -171,8 +171,8 @@ func TestParseTokens_GivenSampleTokens_ProducesTwoRequirementReferences(t *testi
 		if actual[i].MethodName != expected[i].MethodName {
 			t.Errorf("Expected MethodName %s, got %s", expected[i].MethodName, actual[i].MethodName)
 		}
-		if actual[i].Requirement != expected[i].Requirement {
-			t.Errorf("Expected RequirementLabel %s, got %s", expected[i].Requirement, actual[i].Requirement)
+		if actual[i].Id != expected[i].Id {
+			t.Errorf("Expected Id %s, got %s", expected[i].Id, actual[i].Id)
 		}
 		if actual[i].Line != expected[i].Line {
 			t.Errorf("Expected Line %d, got %d", expected[i].Line, actual[i].Line)
@@ -215,8 +215,8 @@ func TestParseTokens_GivenTwoRequirementsForAMethod_ReturnsTwoEntiresForThatMeth
 		t.Fatalf("Expected 2 RequirementReferences, found %d", len(actual))
 	}
 
-	assert.ThatString(actual[0].Requirement).IsEqualTo("REQ-1")
-	assert.ThatString(actual[1].Requirement).IsEqualTo("REQ-2")
+	assert.ThatString(actual[0].Id).IsEqualTo("REQ-1")
+	assert.ThatString(actual[1].Id).IsEqualTo("REQ-2")
 
 	assert.ThatString(actual[0].MethodName).IsEqualTo("MyTest")
 	assert.ThatString(actual[1].MethodName).IsEqualTo("MyTest")
@@ -242,7 +242,7 @@ func TestTokenizeFolder_GivenCSharpGameOfLife_ReturnsAtLeastTwoFiles(t *testing.
 func TestFunctionName_WhenClassAndMethodArePresent_ReturnsClassAndMethodConcatenated(t *testing.T) {
 
 	rr := RequirementReference{
-		ClassName: "MyClass",
+		ClassName:  "MyClass",
 		MethodName: "FirstTest",
 	}
 
@@ -258,4 +258,53 @@ func TestFunctionName_WhenNoClassNamePresent_ReturnsMethodName(t *testing.T) {
 
 	assert := assert.New(t)
 	assert.ThatString(rr.FunctionName()).IsEqualTo("BareFunction")
+}
+
+func TestReferencesForRequirement_WhenTwoReferencesPresent_ReturnsReferences(t *testing.T) {
+
+	var refs = []RequirementReference{
+		{
+			Id:         "R1",
+			FileName:   "file.cs",
+			MethodName: "FirstMethod",
+			ClassName:  "TestClass",
+			Line:       18,
+		},
+		{
+			Id:         "R2",
+			FileName:   "otherfile.cs",
+			MethodName: "OtherMethod",
+			ClassName:  "OtherTestClass",
+			Line:       23,
+		},
+		{
+			Id:         "R1",
+			FileName:   "file.cs",
+			MethodName: "SecondMethod",
+			ClassName:  "TestClass",
+			Line:       18,
+		},
+	}
+
+	for _, r := range refs {
+		References.PushBack(r)
+	}
+
+	actual := ReferencesForRequirement("R1")
+
+	assert := assert.New(t)
+	assert.ThatInt(len(actual)).IsEqualTo(2)
+	assert.ThatString(actual[0].Id).IsEqualTo("R1")
+	assert.ThatString(actual[1].Id).IsEqualTo("R1")
+	assert.ThatString(actual[0].MethodName).IsNotEqualTo(actual[1].MethodName)
+
+}
+
+func TestReferencesForRequirement_WhenNoReferencePresent_ReturnsEmptyArray(t *testing.T) {
+	References.Init()
+
+	actual := ReferencesForRequirement("R1")
+
+	assert := assert.New(t)
+	assert.ThatInt(len(actual)).IsEqualTo(0)
 }
