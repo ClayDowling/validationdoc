@@ -21,6 +21,7 @@ var Requirements = list.New()
 
 var IdColumn = 0
 var DescriptionColumn = 1
+var RequirementsSkipFirstLine = false
 
 // ParseRequirements reads a single CSV file with requirements into memory
 // and returns associated RequirementItems
@@ -35,6 +36,9 @@ func ParseRequirements(src io.Reader) ([]RequirementItem, error) {
 	var items = []RequirementItem{}
 
 	for i := 0; i < len(contents); i++ {
+		if i == 0 && RequirementsSkipFirstLine {
+			continue
+		}
 		item := RequirementItem{
 			Id:          strings.TrimSpace(contents[i][IdColumn]),
 			Description: strings.TrimSpace(contents[i][DescriptionColumn]),
