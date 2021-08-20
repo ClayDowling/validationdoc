@@ -46,6 +46,12 @@ func LoadTrxResults(filename string) (map[string]bool, error) {
 		if parenindex != -1 {
 			name = name[:parenindex]
 		}
+
+		nameparts := strings.Split(name, ".")
+		if len(nameparts) == 3 {
+			name = nameparts[1] + "." + nameparts[2]
+		}
+
 		existingvalue, ok := tests[name]
 		if ok && !existingvalue {
 			continue

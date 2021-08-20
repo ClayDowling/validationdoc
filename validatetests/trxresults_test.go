@@ -30,11 +30,11 @@ func TestTrxResults_GivenTestWithOnePassAndOneFail_MarksTestAsFailing(t *testing
 	blob := `
 <TestRun>
   <Results>
-    <UnitTestResult testName="TestClass.FirstUnitTest(arg: 1)" outcome="Passed" />
-	<UnitTestResult testName="TestClass.FirstUnitTest(arg: 2)" outcome="Failed" />
-	<UnitTestResult testName="TestClass.SecondUnitTest" outcome="Passed" />
-	<UnitTestResult testName="TestClass.ThirdUnitTest(arg: 3)" outcome="Passed" />
-	<UnitTestResult testName="TestClass.ThirdUnitTest(arg: 4)" outcome="Error" />
+    <UnitTestResult testName="Namespace.TestClass.FirstUnitTest(arg: 1)" outcome="Passed" />
+	<UnitTestResult testName="Namespace.TestClass.FirstUnitTest(arg: 2)" outcome="Failed" />
+	<UnitTestResult testName="Namespace.TestClass.SecondUnitTest" outcome="Passed" />
+	<UnitTestResult testName="Namespace.TestClass.ThirdUnitTest(arg: 3)" outcome="Passed" />
+	<UnitTestResult testName="Namespace.TestClass.ThirdUnitTest(arg: 4)" outcome="Error" />
   </Results>
 </TestRun>
 `
