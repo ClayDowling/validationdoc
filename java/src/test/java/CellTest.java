@@ -17,7 +17,7 @@ public class CellTest {
     }
 
     // Requirement CELL-1
-    @ParameterizedTest
+    @ParameterizedTest(name="Cell_LiveWithFewerThanTwoNeighbors_Dies({arguments})")
     @ValueSource(ints = { 0, 1 })
     void Cell_LiveWithFewerThanTwoNeighbors_Dies(int neighbor) {
         Cell c = new Cell(true);
@@ -25,7 +25,7 @@ public class CellTest {
     }
 
     // Requirement CELL-2
-    @ParameterizedTest
+    @ParameterizedTest(name="LiveCell_WithTwoOrThreeNeighbors_Lives({arguments})")
     @ValueSource(ints = { 2, 3 })
     void LiveCell_WithTwoOrThreeNeighbors_Lives(int neighbors) {
         Cell c = new Cell(true);
@@ -39,16 +39,16 @@ public class CellTest {
         assertThat(c.Lives(3)).isTrue();
     }
 
-    @ParameterizedTest
+    @ParameterizedTest(name="LiveCell_With4OrMoreNeighbors_Dies({argumentsWithNames})")
     @ValueSource(ints = { 4, 5, 6, 7, 8 })
     // Requirement CELL-4
     void LiveCell_With4OrMoreNeighbors_Dies(int neighbors) {
         Cell c = new Cell(true);
-        assertThat(c.Lives(neighbors)).isFalse();
+        assertThat(c.Lives(neighbors)).isTrue();
     }
 
     // Requirement CELL-5
-    @ParameterizedTest
+    @ParameterizedTest(name="DeadCell_WithNot3Neighbors_StaysDead({argumentsWithNames})")
     @ValueSource(ints = { 0, 1, 2, 4, 5, 6, 7, 8 })
     void DeadCell_WithNot3Neighbors_StaysDead(int neighbors) {
         Cell c = new Cell(false);

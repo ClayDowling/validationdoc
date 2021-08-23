@@ -62,7 +62,16 @@ func TestGetToken_GivenAMethodName_ReturnsMethodNameToken(t *testing.T) {
 	assert.ThatString(actual.Value).IsEqualTo("ShouldReturnAMethodName")
 }
 
-func TestGetToken_GivenRandomLines_ReturnsIgnoredLine(t *testing.T) {
+func TestGetToken_GivenDefaultVisibilityTestFunction_ReturnsMethodNameToken(t *testing.T) {
+	assert := assert.New(t)
+
+	actual := GetToken("    void DifferentTestMethod ()", Patterns)
+
+	assert.ThatInt(int(actual.Type)).IsEqualTo(MethodName)
+	assert.ThatString(actual.Value).IsEqualTo("DifferentTestMethod")
+}
+
+func TestGetToken_GivenPrivateLines_ReturnsIgnoredLine(t *testing.T) {
 	assert := assert.New(t)
 
 	actual := GetToken(" private void SetUp() {  ", Patterns)

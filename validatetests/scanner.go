@@ -61,8 +61,12 @@ var Patterns []TokenPattern = []TokenPattern{
 		Pattern: regexp.MustCompile(`//+\s+Requirement\s+([A-Za-z0-9-\.]+)`),
 	},
 	{
+		Type:    IgnoredLine,
+		Pattern: regexp.MustCompile(`\s*private\s+void`),
+	},
+	{
 		Type:    MethodName,
-		Pattern: regexp.MustCompile(`\s*public\s+void\s+([A-Za-z0-9_]+)\s*\(`),
+		Pattern: regexp.MustCompile(`\s*void\s+([A-Za-z0-9_]+)\s*\(`),
 	},
 }
 
@@ -73,6 +77,9 @@ func GetToken(line string, patterns []TokenPattern) Token {
 	for _, p := range Patterns {
 		a := p.Pattern.FindStringSubmatch(line)
 		if a != nil {
+			if p.Type == IgnoredLine {
+				break
+			}
 			return Token{
 				Type:  p.Type,
 				Value: a[1],
