@@ -6,13 +6,12 @@ ValidationDoc provides an automated way to document that you have automated test
 2. Automated tests which validate your requirements.  Before each test method, add a comment of the form `// Requirement XXX` where XXX is a unique ID from your requirements document.
 3. Test output, usually as an XML file.
 
-There is a working example in the [c-sharp](c-sharp) folder of this repository.
+There is a working example in the [c-sharp](c-sharp) and [java](java) folders of this repository.
 
     .\validationdoc.exe --requirements ../requirements --source ..\c-sharp\gameoflife-tests\ --testresults 
       ..\c-sharp\gameoflife-tests\TestResults\ --template ./report.txt --header > validation.md
 
 This will generate `validation.md`, which produces a Markdown file similar to:
-
 
 ### Validation Report
 
@@ -26,6 +25,12 @@ This will generate `validation.md`, which produces a Markdown file similar to:
 | GAME-1 | The board starts with a randomly determined initial state | false |  c-sharp/gameoflife-tests/BoardTests.cs:17  |
 | GAME-2 | On each generation, the cell rules are applied to each cell simultaneously to create the next generation. | false |  |
 | GAME-3 | The game ends when all cells have died. | false |  |
+
+
+## JUnit5 And Parameterized Tests
+
+For reasons known only to the authors of JUnit5, they have changed the way that parameterized tests report their results in the xml results file.  Rather than providing a method name, it provides an index into the list of possible values.  Which is cute if you have more than one parameterized test.  The solution is to use the name parameter to give the results the correct name.  You can see how to manage it in the example tests.
+
 
 # Building
 
